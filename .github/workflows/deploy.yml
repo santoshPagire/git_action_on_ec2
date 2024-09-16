@@ -13,9 +13,18 @@ jobs:
     runs-on: self-hosted
 
     steps:
-    - name: Pull Docker image
-      run: sudo docker pull santoshpagire/git-action-node_app:latest
-    - name: Delete Old docker container
-      run: sudo docker rm -f node-app-container || true
-    - name: Run Docker Container
-      run: sudo docker run -d -p 8080:8080 --name node-app-container santoshpagire/git-action-node-app
+     - name: Login Dockerhub
+         
+       env:
+         DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+       run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
+     - name: Pull Docker image
+       run: sudo docker pull santoshpagire/git-action-node_app:latest
+
+     - name: Delete Old docker container
+       run: sudo docker rm -f node-app-container || true
+       
+     - name: Run Docker Container
+       run: sudo docker run -d -p 8080:8080 --name node-app-container santoshpagire/git-action-node-app
