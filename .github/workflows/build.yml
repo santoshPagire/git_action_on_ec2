@@ -1,6 +1,6 @@
 name: Build Pipeline
 
-on: 
+on:
   push:
     branches:
       - main
