@@ -21,7 +21,7 @@ jobs:
        run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
      - name: Pull Docker image
-       run: sudo docker pull santoshpagire/git-action-node_app:latest
+       run: sudo docker pull santoshpagire/git-action-node-app:latest
 
      - name: Delete Old docker container
        run: sudo docker rm -f node-app-container || true
